@@ -401,12 +401,15 @@ if (Checker(content, "fileUpload")) {
         const required = upload.shift()?.addBrackets()?.trim() === "true";
 
         actionRowInner.push({
-            type: 19,
+            type: 18, // Label
             label,
-            custom_id: customId,
-            min_files,
-            max_files,
-            required
+            component: {
+                type: 19, // FileUpload
+                custom_id: customId,
+                min_values: min_files,
+                max_values: max_files,
+                required
+            }
         });
     }
 }
