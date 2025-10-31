@@ -386,9 +386,7 @@ let ComponentParser = async (message, d) => {
                 });
             }
         }
-        actionRows.push({ type: 1, components: actionRowInner });
-    }
-
+        
 // File Upload
 // {fileUpload:label:custom_id:minFiles?:maxFiles?:required?}
 if (Checker(content, "fileUpload")) {
@@ -412,8 +410,8 @@ if (Checker(content, "fileUpload")) {
         });
     }
 }
-
-    
+        actionRows.push({ type: 1, components: actionRowInner });
+    }
     return actionRows;
 };
 
