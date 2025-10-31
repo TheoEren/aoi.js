@@ -388,6 +388,32 @@ let ComponentParser = async (message, d) => {
         }
         actionRows.push({ type: 1, components: actionRowInner });
     }
+
+// File Upload
+// {fileUpload:label:custom_id:minFiles?:maxFiles?:required?}
+if (Checker(content, "fileUpload")) {
+    const inside = content.split("{fileUpload:").slice(1);
+    for (let upload of inside) {
+        upload = upload.split("}")[0].split(":");
+
+        const label = upload.shift().addBrackets().trim();
+        const customId = upload.shift().addBrackets().trim();
+        const min_files = Number(upload.shift()?.addBrackets()?.trim() || 0);
+        const max_files = Number(upload.shift()?.addBrackets()?.trim() || 1);
+        const required = upload.shift()?.addBrackets()?.trim() === "true";
+
+        actionRowInner.push({
+            type: ComponentType.FileUpload,
+            label,
+            custom_id: customId,
+            min_files,
+            max_files,
+            required
+        });
+    }
+}
+
+    
     return actionRows;
 };
 
