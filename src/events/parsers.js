@@ -401,7 +401,7 @@ if (Checker(content, "fileUpload")) {
         const required = upload.shift()?.addBrackets()?.trim() === "true";
 
         actionRowInner.push({
-            type: ComponentType.FileUpload,
+            type: 19,
             label,
             custom_id: customId,
             min_files,
